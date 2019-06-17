@@ -16,14 +16,14 @@ class Square extends React.Component {
 
   render() {
     return (
-      // Display an alert in the browser when a square is clicked on
-      // Changing to arrow function syntax for event handlers
+      // Display current state in the browser when a square is clicked on
       // Passing a function as the onCLick prop
-      <button className="square" onClick={() => { alert('click'); }}>
-        {
-          // Show prop value passed into Square
-          this.props.value
-        }
+      // Re-render that Square whenever its <button> is clicked.
+      <button
+        className="square"
+        onClick={() => this.setState({value: 'X'})}
+      >
+        {this.state.value}
       </button>
     );
   }
