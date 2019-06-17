@@ -43,28 +43,25 @@ class Board extends React.Component {
     };
   }
 
+  /*
+    Define handleClick method here.
+  */
+
   // renderSquare will read from squares array.
   renderSquare(i) {
     // Each Square will now receive a value prop that will either be 'X', 'O', or null for empty squares.
-
-    /*
-    Pass down 2 props form Board to Square:
-    1) value -
-    2) onCLick - function that Square can call when clicked.
-    */
-
+    // Pass down 2 props form Board to Square: 1) value, 2) onCLick - function that Square can call when clicked.
     return (
       <Square
         value={this.state.squares[i]}
         // The Square’s onClick prop was specified by the Board.
+        // We could give any name to the Square’s onClick prop or Board’s handleClick method, and the code would work the same. In React, it’s conventional to use on[Event] names for props which represent events and handle[Event] for the methods which handle the events.
         onClick={() => this.handleClick(i)}  // Board passed onClick={() => this.handleClick(i)} to Square}
       />
     );
   }
-
   render() {
     const status = 'Next player: X';
-
     return (
       <div>
         <div className="status">{status}</div>
@@ -87,6 +84,11 @@ class Board extends React.Component {
     );
   }
 }
+
+
+
+
+
 
 // The Game component renders a board with placeholder values which we’ll modify later.
 class Game extends React.Component {
