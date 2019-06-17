@@ -8,8 +8,9 @@ import './index.css';
 class Square extends React.Component {
   render() {
     return (
-      // Display an alert in the browser when a square is clicked
-      <button className="square" onClick={function() { alert('click'); }}>
+      // Display an alert in the browser when a square is clicked on
+      // Changing to arrow function syntax for event handlers
+      <button className="square" onClick={() => { alert('click'); }}>
         {
           // Show prop value passed into Square
           this.props.value
