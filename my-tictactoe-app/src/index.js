@@ -6,14 +6,6 @@ import './index.css';
 
 // The Square component renders a single <button>.
 class Square extends React.Component {
-  // Adding a constructor to the Square class to initialise the state.
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
-  }
-
   render() {
     return (
       // Display current state in the browser when a square is clicked on
@@ -21,18 +13,46 @@ class Square extends React.Component {
       // Re-render that Square whenever its <button> is clicked.
       <button
         className="square"
-        onClick={() => this.setState({value: 'X'})}
+        onClick={() => this.props.onClick()}
       >
-        {this.state.value}
+        {this.props.value}
       </button>
     );
   }
 }
 
+
+
+/* The best approach is to store the game’s state in the parent Board component
+   instead of in each Square. The Board component can tell each Square what to
+   display by passing a prop, just like we did when we passed a number to each
+   Square.
+*/
+
 // The Board renders 9 squares.
 class Board extends React.Component {
+  // Set the Board’s initial state to contain an array of 9 nulls corresponding to the 9 squares.
+  constructor(props) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null),
+    };
+  }
+
   renderSquare(i) {
-    return <Square value={i} />;  // Pass a prop called value from parent Board component to child Square component
+    // Each Square will now receive a value prop that will either be 'X', 'O', or null for empty squares.
+    /*
+    Pass down 2 props form Board to Square:
+    1) value -
+    2) onCLick - function that Square can call when clicked.
+    */
+
+    return (
+      <Square
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
   }
 
   render() {
