@@ -1,3 +1,7 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+
 // There are currently no interactive components.
 
 // The Square component renders a single <button>.
