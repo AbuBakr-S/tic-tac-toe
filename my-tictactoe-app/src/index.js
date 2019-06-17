@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// There are currently no interactive components.
+
+
+
+
 
 // The Square component renders a single <button>.
 class Square extends React.Component {
@@ -13,7 +16,8 @@ class Square extends React.Component {
       // Re-render that Square whenever its <button> is clicked.
       <button
         className="square"
-        onClick={() => this.props.onClick()}
+        // Passing a function as the onClick prop.
+        onClick={() => this.props.onClick()}   //Square calls this.handleClick(i), from Board, when clicked.
       >
         {this.props.value}
       </button>
@@ -23,24 +27,26 @@ class Square extends React.Component {
 
 
 
-/* The best approach is to store the game’s state in the parent Board component
-   instead of in each Square. The Board component can tell each Square what to
-   display by passing a prop, just like we did when we passed a number to each
-   Square.
-*/
+
+
 
 // The Board renders 9 squares.
+// The Board component now maintains which squares are filled.
 class Board extends React.Component {
+  //  In JavaScript classes, you need to always call super when defining the constructor of a subclass. All React component classes that have a constructor should start it with a super(props) call.
   // Set the Board’s initial state to contain an array of 9 nulls corresponding to the 9 squares.
   constructor(props) {
     super(props);
+    // Defined the squares in the squares array: all elements are set initialised to null.
     this.state = {
       squares: Array(9).fill(null),
     };
   }
 
+  // renderSquare will read from squares array.
   renderSquare(i) {
     // Each Square will now receive a value prop that will either be 'X', 'O', or null for empty squares.
+
     /*
     Pass down 2 props form Board to Square:
     1) value -
@@ -50,7 +56,8 @@ class Board extends React.Component {
     return (
       <Square
         value={this.state.squares[i]}
-        onClick={() => this.handleClick(i)}
+        // The Square’s onClick prop was specified by the Board.
+        onClick={() => this.handleClick(i)}  // Board passed onClick={() => this.handleClick(i)} to Square}
       />
     );
   }
