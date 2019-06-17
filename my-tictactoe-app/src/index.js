@@ -6,10 +6,19 @@ import './index.css';
 
 // The Square component renders a single <button>.
 class Square extends React.Component {
+  // Adding a constructor to the Square class to initialise the state.
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: null,
+    };
+  }
+
   render() {
     return (
       // Display an alert in the browser when a square is clicked on
       // Changing to arrow function syntax for event handlers
+      // Passing a function as the onCLick prop
       <button className="square" onClick={() => { alert('click'); }}>
         {
           // Show prop value passed into Square
