@@ -8,8 +8,12 @@ import './index.css';
 class Square extends React.Component {
   render() {
     return (
-      <button className="square">
-        {/* TODO */}
+      // Display an alert in the browser when a square is clicked
+      <button className="square" onClick={function() { alert('click'); }}>
+        {
+          // Show prop value passed into Square
+          this.props.value
+        }
       </button>
     );
   }
@@ -18,7 +22,7 @@ class Square extends React.Component {
 // The Board renders 9 squares.
 class Board extends React.Component {
   renderSquare(i) {
-    return <Square />;
+    return <Square value={i} />;  // Pass a prop called value from parent Board component to child Square component
   }
 
   render() {
